@@ -6,7 +6,7 @@ const customerSchema = new Schema({
     email: String,
     password: String,
     salt: String,
-    Phone: Number,
+    phone: Number,
     address:[
         { type: Schema.Types.ObjectId, ref: 'address', require: true }
     ],
@@ -27,4 +27,6 @@ const customerSchema = new Schema({
 })
 
 
-module.exports = mongoose.model('customer',customerSchema);
+const CustomerSchema= mongoose.model('customer',customerSchema);
+
+export default CustomerSchema;

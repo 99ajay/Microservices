@@ -1,9 +1,22 @@
-// const http = require('http');
-import http from 'http';
-import  databaseConnection  from './database/connection.js';
+import express from 'express';
+ import expressApp from './express-app.js';
+import databaseConnection from './database/connection.js';
 
-const server = http.createServer(async(req,res)=>{
-    await databaseConnection()
-    console.log("Node server is starting at the port no 3000");
-})
-server.listen(3000);
+const StartServer = async() => {
+
+    const app = express();
+    
+    await databaseConnection();
+    
+    await expressApp(app);
+
+    app.listen(3000, () => {
+        console.log("listening to port 3000");
+    })
+    .on('error', (err) => {
+        console.log(err);
+        process.exit();
+    })
+}
+
+StartServer();

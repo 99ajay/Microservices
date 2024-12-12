@@ -1,6 +1,5 @@
-const {CustomerSchema} = require("../Modals");
-
-class CustomerRepository{
+import  CustomerSchema from "../Modals/customer.js";
+export default class CustomerRepository{
    async CreateCustomer({name,email,phone,salt}){
     try{
         const Customer = new CustomerSchema({name,email,phone,salt,address:[]});
